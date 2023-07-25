@@ -7,19 +7,21 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Post_Controller extends Controller
+class PostController extends Controller
 {
     public function index(Request $request)
     {
         $categoryId = $request->query('category_id');
         $posts = Post::where('category_id', $categoryId)->get();
-        return view('Post.home', ['post' => $posts]);
+        return view('post.partials.list', ['post' => $posts]);
     }
+
     public function create()
     {
         $categories = Category::all();
-        return view('Post.add', compact('categories'));
+        return view('post.partials.add', ['categories'=>$categories]);
     }
+
     public function store(Request $request)
     {
         $post = new Post();
@@ -36,7 +38,7 @@ class Post_Controller extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('Post.edit', ['post' => $post]);
+        return view('post.partials.edit', ['post' => $post]);
     }
 
     public function update(Request $request, $id)

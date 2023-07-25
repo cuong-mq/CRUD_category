@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Cat_Controller;
-use App\Http\Controllers\Post_Controller;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +16,17 @@ use App\Http\Controllers\Post_Controller;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/records', [Cat_Controller::class, 'index'])->name('records.index');
-Route::get('/records/create', [Cat_Controller::class, 'create'])->name('records.create');
-Route::post('/records', [Cat_Controller::class, 'store'])->name('records.store');
-Route::get('/records/{id}/edit', [Cat_Controller::class, 'edit'])->name('records.edit');
-Route::put('/records/{id}', [Cat_Controller::class, 'update'])->name('records.update');
-Route::delete('/{id}/records', [Cat_Controller::class, 'delete'])->name('records.delete');
 
-Route::get('/records/post', [Post_Controller::class, 'index'])->name('post.index');
-Route::get('/records/post/create', [Post_Controller::class, 'create'])->name('post.create');
-Route::post('/records/post', [Post_Controller::class, 'store'])->name('post.store');
-Route::get('/records/post/{id}/edit', [Post_Controller::class, 'edit'])->name('post.edit');
-Route::put('/records/post/{id}', [Post_Controller::class, 'update'])->name('post.update');
-Route::delete('/{id}/records/post', [Post_Controller::class, 'delete'])->name('post.delete');
+Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
+Route::get('/post/category_id={categoryId}', [PostController::class, 'index'])->name('post.index');
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
+Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::put('/post/{id}', [PostController::class, 'update'])->name('post.update');
+Route::delete('/post/{id}', [PostController::class, 'delete'])->name('post.delete');

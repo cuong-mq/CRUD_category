@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id'); // Cột khóa ngoại liên kết đến bảng categories
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('name', 515);
             $table->string('slug', 1024);
             $table->text('description');

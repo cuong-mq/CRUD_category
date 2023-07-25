@@ -6,15 +6,16 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Cat_Controller extends Controller
+class CategoryController extends Controller
 {
-    public function index(){
-        $category =DB::table('categories')->get();
-        return view('Category.home' ,['category' => $category]);
+    public function index()
+    {
+        $category = DB::table('categories')->get();
+        return view('category.partials.list', ['category' => $category]);
     }
     public function create()
     {
-        return view('Category.add');
+        return view('category.add');
     }
     public function store(Request $request)
     {
@@ -25,13 +26,13 @@ class Cat_Controller extends Controller
         $category->content = $request->content;
         $category->save();
 
-        return redirect()->route('records.index');
+        return redirect()->route('category.index');
     }
 
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('Category.edit', ['category' => $category]);
+        return view('category.partials.edit', ['category' => $category]);
     }
 
     public function update(Request $request, $id)
@@ -42,13 +43,20 @@ class Cat_Controller extends Controller
         $category->description = $request->description;
         $category->content = $request->content;
         $category->save();
-        return redirect()->route('records.index');
+        return redirect()->route('category.index');
     }
+   
 
     public function delete($id)
     {
+        $this->deleteCategoryWithPosts($id);
+        return redirect()->route('category.index');
+    }
+
+    private function deleteCategoryWithPosts($id)
+    {
         $category = Category::find($id);
+        $category->posts()->delete();
         $category->delete();
-        return redirect()->route('records.index');
     }
 }
