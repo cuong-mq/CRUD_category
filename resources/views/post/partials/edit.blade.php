@@ -41,7 +41,7 @@
                                             value="{{ $post->address }}"required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Lưu</button>
-                                    <a type="button" href="{{ route('post.index', ['categoryId' => $post->category_id]) }}"
+                                    <a type="button" href="{{ route('post.index',['categoryId'=>$post->category_id]) }}"
                                         class="btn btn-secondary">Quay
                                         lại</a>
                                 </form>

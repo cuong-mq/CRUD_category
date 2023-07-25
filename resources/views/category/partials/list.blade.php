@@ -40,7 +40,7 @@
                                           </form>
                                           <a href="{{ route('category.edit', $category->id) }}"
                                               class="btn btn-primary btn-sm">Edit</a>
-                                          <a href="{{ route('post.index', ['categoryId' => $category->id]) }}"
+                                          <a href="{{ route('post.index',['categoryId'=>$category->id]) }}"
                                               class="btn btn-primary btn-sm">Show</a>
                                       </td>
                                   </tr>

@@ -42,7 +42,7 @@
                                         <input type="text" class="form-control" name="content" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save</button>
-                                    <a type="button" href="{{ route('post.index', ['categoryId' => $category->id]) }}"
+                                    <a type="button" href="{{ route('post.index',['categoryId'=>$category->id]) }}"
                                         class="btn btn-secondary">Exit</a>
                                 </form>
                             </div>
