@@ -8,7 +8,7 @@
                         <div class="card-header">
                             Edit
                         </div>
-                        
+
                         <div class="card-body">
                             <div class="col-12">
                                 <form method="post" action="{{ route('post.update', $post->id) }}">

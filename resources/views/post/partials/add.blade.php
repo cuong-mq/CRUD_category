@@ -8,7 +8,7 @@
                         <div class="card-header">
                             Add Post
                         </div>
-                        
+
                         <div class="card-body">
                             <div class="col-12">
                                 <form method="post" action="{{ route('post.store') }}">
