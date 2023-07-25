@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $categoryId = $request->query('category_id');
+        $categoryId = $request->categoryId;
         $posts = Post::where('category_id', $categoryId)->get();
         return view('post.partials.list', ['post' => $posts]);
     }
@@ -32,7 +32,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();
         $category_id = $request->category_id;   
-        return redirect()->route('post.index', ['category_id' => $category_id]);
+        return redirect()->route('post.index', ['categoryId' => $category_id]);
     }
 
     public function edit($id)
@@ -51,7 +51,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();  
      
-        return redirect()->route('post.index', ['category_id' => $category_id]);
+        return redirect()->route('post.index', ['categoryId' => $category_id]);
     }
 
     public function delete(Request $request, $id)
