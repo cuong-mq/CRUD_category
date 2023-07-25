@@ -8,6 +8,7 @@
                         <div class="card-header">
                             Edit
                         </div>
+                        
                         <div class="card-body">
                             <div class="col-12">
                                 <form method="post" action="{{ route('post.update', $post->id) }}">
@@ -40,7 +41,8 @@
                                             value="{{ $post->address }}"required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Lưu</button>
-                                    <a type="button" href="{{ route('post.index',['categoryId' => $post->category_id]) }}" class="btn btn-secondary">Quay
+                                    <a type="button" href="{{ route('post.index', ['categoryId' => $post->category_id]) }}"
+                                        class="btn btn-secondary">Quay
                                         lại</a>
                                 </form>
                             </div>

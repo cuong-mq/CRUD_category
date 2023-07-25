@@ -13,13 +13,13 @@ class PostController extends Controller
     {
         $categoryId = $request->categoryId;
         $posts = Post::where('category_id', $categoryId)->get();
-        return view('post.partials.list', ['post' => $posts]);
+        return view('post.partials.list',['posts' =>$posts]);
     }
 
     public function create()
     {
         $categories = Category::all();
-        return view('post.partials.add', ['categories'=>$categories]);
+        return view('post.partials.add',['categories'=>$categories]);
     }
 
     public function store(Request $request)
@@ -32,13 +32,13 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();
         $category_id = $request->category_id;   
-        return redirect()->route('post.index', ['categoryId' => $category_id]);
+        return redirect()->route('post.index',['categoryId'=>$category_id]);
     }
 
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('post.partials.edit', ['post' => $post]);
+        return view('post.partials.edit',['post'=>$post]);
     }
 
     public function update(Request $request, $id)
@@ -50,15 +50,13 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->content = $request->content;
         $post->save();  
-     
-        return redirect()->route('post.index', ['categoryId' => $category_id]);
+        return redirect()->route('post.index',['categoryId'=>$category_id]);
     }
 
     public function delete(Request $request, $id)
     {
         $post = Post::find($id);
         $post->delete();
-        $category_id = $request->category_id;
         return redirect()->back();
     }
 }

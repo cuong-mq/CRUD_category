@@ -7,6 +7,7 @@
                     <div class="card-header">
                         List-Post
                     </div>
+
                     <div class="card-body">
                         <div class="col-12">
                             <a class="btn btn-success mb-2" href="{{ route('post.create') }}">ADD</a>
@@ -23,7 +24,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($post as $key => $post)
+                                    @foreach ($posts as $key => $post)
                                         <tr>
                                             <td> {{ ++$key }} </td>
                                             <td> {{ $post->name }} </td>

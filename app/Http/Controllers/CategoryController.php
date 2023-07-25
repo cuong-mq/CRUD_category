@@ -8,15 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    
     public function index()
     {
-        $category = DB::table('categories')->get();
-        return view('category.partials.list', ['category' => $category]);
+        $categories= DB::table('categories')->get();
+        return view('category.partials.list',['categories'=>$categories]);
     }
+
     public function create()
     {
         return view('category.partials.add');
     }
+
     public function store(Request $request)
     {
         $category = new Category();
@@ -25,14 +28,13 @@ class CategoryController extends Controller
         $category->description = $request->description;
         $category->content = $request->content;
         $category->save();
-
         return redirect()->route('category.index');
     }
 
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('category.partials.edit', ['category' => $category]);
+        return view('category.partials.edit',['category'=>$category]);
     }
 
     public function update(Request $request, $id)
@@ -46,7 +48,6 @@ class CategoryController extends Controller
         return redirect()->route('category.index');
     }
    
-
     public function delete($id)
     {
         $this->deleteCategoryWithPosts($id);
